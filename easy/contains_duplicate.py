@@ -6,3 +6,6 @@ class Solution:
                 return True
             hashset.add(num)
         return False
+
+    def one_liner_contains_duplicat(self, nums: list[int]) -> bool:
+        return len(set(nums)) != len(nums)
