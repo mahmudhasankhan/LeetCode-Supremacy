@@ -1,5 +1,5 @@
 class Solution:
-    def isPalindrome(self, input_string: str) -> bool:
+    def is_palindrome(self, input_string: str) -> bool:
 
         string = ""
 
