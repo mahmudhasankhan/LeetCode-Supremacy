@@ -21,4 +21,4 @@ class Solution:
 if __name__ == "__main__":
     llist = [7, 1, 5, 3, 6, 4]
     l_obj = Solution()
-    print(l_obj.maxProfit(llist))
+    print(l_obj.max_profit(llist))
