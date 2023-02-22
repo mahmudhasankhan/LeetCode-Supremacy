@@ -1,5 +1,5 @@
 class Solution:
-    def maxProfit(self, prices: list[int]) -> int:
+    def max_profit(self, prices: list[int]) -> int:
         # using the two pointers technique to solve this problem.
         left_pointer, right_pointer = 0, 1
         max_profit = 0
