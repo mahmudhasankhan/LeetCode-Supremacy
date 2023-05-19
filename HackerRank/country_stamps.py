@@ -1,4 +1,3 @@
-
 def main():
     iterations = int(input())
     stamps = set()
