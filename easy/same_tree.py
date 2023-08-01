@@ -21,8 +21,8 @@ class Solution:
                     node.left, traversal_string)
                 traversal_string = pre_order_traversal(
                     node.right, traversal_string)
-            # else:
-            #     traversal_string += "null" + "->"
+            else:
+                traversal_string += "null" + "->"
             return traversal_string
         tree1_traversed = pre_order_traversal(p, "")
         tree2_traversed = pre_order_traversal(q, "")
