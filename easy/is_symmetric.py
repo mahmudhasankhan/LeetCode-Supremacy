@@ -1,6 +1,6 @@
 class Node(object):
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, val):
+        self.val = val
         self.left = None
         self.right = None
 
@@ -10,23 +10,22 @@ class BinaryTree(object):
         self.root = Node(root)
 
     def is_symmetric(self, root: Node) -> bool:
-        flag = None
-        if root is None:
-            return False
-        else:
-            self.is_symmetric(root.left)
-            self.is_symmetric(root.right)
+        def dfs(left: Node, right: Node) -> bool:
+            if not left and not right:
+                return True
+            if not left or not right:
+                return False
+            return (left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left))
 
-        return flag
+        return dfs(root.left, root.right)
 
-
-#           Tree
-#
-#            1
-#           / \
-#          2   2
-#         / \ / \
-#        3  4 4  3
+    #           Tree
+    #
+    #            1
+    #           / \
+    #          2   2
+    #         / \ / \
+    #        3  4 4  3
 
 
 def main():
