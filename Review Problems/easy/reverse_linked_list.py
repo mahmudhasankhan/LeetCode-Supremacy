@@ -10,14 +10,20 @@ class ListNode:
 
 class LinkedList:
     def __init__(self, head: ListNode):
-        self.head = head
+        self.head = ListNode(head)
+
+    def print_list(self) -> str:
+        if self.head is None:
+            return "Empty Linked List"
+        else:
+            return self.print_linked_list(self.head, "")
 
     def print_linked_list(self, head: ListNode, traversal: str) -> str:
 
-        if head is None:
-            return "Empty"
-        traversal += str(head.val) + "->"
-        traversal = self.print_linked_list(head.next, "")
+        if head:
+            traversal += str(head.val) + "->"
+            traversal = self.print_linked_list(head.next, traversal)
+        return traversal
 
 
 class Solution:
@@ -33,11 +39,15 @@ class Solution:
 
 
 def main():
-    l_list = LinkedList(ListNode(1))
+    l_list = LinkedList(1)
     l_list.head.next = ListNode(2)
     l_list.head.next.next = ListNode(3)
     l_list.head.next.next.next = ListNode(4)
     l_list.head.next.next.next.next = ListNode(5)
+    print(l_list.print_list())
+    # while l_list.head:
+    #     print(l_list.head.val)
+    #     l_list.head = l_list.head.next
 
 
 if __name__ == "__main__":
