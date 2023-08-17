@@ -10,14 +10,29 @@ class Solution:
                 hashmap[element] += 1
             else:
                 hashmap[element] = 1
-
+        max_num = max(hashmap.values())
         for element in hashmap:
-            if hashmap[element] == max(hashmap.values()):
+            if hashmap[element] == max_num:
                 return element
 
 
+class NeetcodeSolution:
+    def majorityElement(self, nums: List[int]) -> int:
+        # hashmap Solution
+        count = {}
+        res, max_count = 0, 0
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+            res = n if count[n] > max_count else res
+            max_count = max(count[n], max_count)
+
+        return res
+
+
 def main():
-    print(Solution().majorityElement([4, 2, 2, 1, 1, 1, 3, 3]))
+    print(Solution().majorityElement([4, 4, 4, 4, 2, 2, 1, 1, 1, 3, 3]))
+    print(NeetcodeSolution().majorityElement(
+        [4, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3]))
 
 
 if __name__ == "__main__":
