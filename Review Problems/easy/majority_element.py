@@ -2,6 +2,7 @@ from typing import List
 
 
 class Solution:
+    # mine works better than neet's and its super easy to understand!
     def majorityElement(self, nums: List[int]) -> int:
         # i need to implement a counter
         hashmap = {}
@@ -28,10 +29,23 @@ class NeetcodeSolution:
 
         return res
 
+    # implemented by myself
+    def boyer_moore_algorithm(self, nums:
+                              List[int]) -> int:
+        res = nums[0]
+        count, ptr = 1, 1
+        while ptr < len(nums):
+            count += (1 if nums[ptr] == res else -1)
+            ptr += 1
+            res = nums[ptr] if count == 0 else res
+        return res
+
 
 def main():
     print(Solution().majorityElement([4, 4, 4, 4, 2, 2, 1, 1, 1, 3, 3]))
     print(NeetcodeSolution().majorityElement(
+        [4, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3]))
+    print(NeetcodeSolution().boyer_moore_algorithm(
         [4, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3]))
 
 
