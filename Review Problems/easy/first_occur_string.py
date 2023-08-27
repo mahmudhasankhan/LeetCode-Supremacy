@@ -1,6 +1,7 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        # Easy solution down here:
+        """Easy solution down here: learned it in
+        longest common prefix problem"""
         # return haystack.find(needle)
 
         lptr, rptr = 0, len(needle)
