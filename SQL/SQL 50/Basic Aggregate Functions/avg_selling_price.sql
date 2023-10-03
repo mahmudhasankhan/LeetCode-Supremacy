@@ -6,3 +6,5 @@ LEFT JOIN UnitsSold AS U
 ON P.product_id = U.product_id
 AND U.purchase_date BETWEEN P.start_date AND P.end_date
 GROUP BY P.product_id;
+
+-- 853ms, Beats 40.16%of users with MS SQL Server
