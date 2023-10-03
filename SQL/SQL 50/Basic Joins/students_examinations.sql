@@ -28,7 +28,7 @@ SELECT StudentSubject_CTE.student_id
 FROM StudentSubject_CTE  
 LEFT JOIN Exams_CTE ON StudentSubject_CTE.student_id = Exams_CTE.student_id
 AND StudentSubject_CTE.subject_name = Exams_CTE.subject_name
-ORDER BY StudentSubject_CTE.student_id, StudentSubject_CTE.student_name,StudentSubject_CTE.subject_name
+  ORDER BY StudentSubject_CTE.student_id, StudentSubject_CTE.student_name,StudentSubject_CTE.subject_name
 
 
 -- 998ms, Beats 42.21%of users with MS SQL Server
