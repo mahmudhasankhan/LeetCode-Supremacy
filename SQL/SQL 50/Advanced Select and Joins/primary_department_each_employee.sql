@@ -80,3 +80,5 @@ WHERE employee_id in (SELECT employee_id FROM CTE WHERE [COUNT] = 1)
 OR primary_flag = 'Y'
 GROUP BY employee_id, department_id
 ;
+
+-- Runtime: 1952ms, Beats 5.02% of users with MS SQL Server
