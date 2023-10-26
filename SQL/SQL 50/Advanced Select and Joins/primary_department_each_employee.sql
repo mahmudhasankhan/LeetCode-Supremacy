@@ -67,10 +67,16 @@ Explanation:
 
 -- Code:
 
+WITH CTE AS(
+	SELECT employee_id, COUNT(department_id) AS [COUNT]
+	FROM Employee
+	GROUP BY employee_id
+)
+
 SELECT employee_id,
 department_id 
 FROM Employee
+WHERE employee_id in (SELECT employee_id FROM CTE WHERE [COUNT] = 1)
+OR primary_flag = 'Y'
 GROUP BY employee_id, department_id
-HAVING (employee_id = department_id AND primary_flag = 'N')
-OR (employee_id <> department_id AND primary_flag = 'Y')
 ;
