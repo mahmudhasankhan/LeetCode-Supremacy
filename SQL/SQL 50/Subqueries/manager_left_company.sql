@@ -68,4 +68,4 @@ AND manager_id IN (
 )
 ORDER BY employee_id
 
--- Runtime: 1245ms, Beats 15.28%of users with MS SQL Server
+-- Runtime: 1038ms, Beats 36.36% of users with MS SQL Server
