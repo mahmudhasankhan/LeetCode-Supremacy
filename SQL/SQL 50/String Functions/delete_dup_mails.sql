@@ -18,7 +18,10 @@ For SQL users, please note that you are supposed to write a DELETE statement and
 
 For Pandas users, please note that you are supposed to modify Person in place.
 
-After running your script, the answer shown is the Person table. The driver will first compile and run your piece of code and then show the Person table. The final order of the Person table does not matter.
+After running your script, the answer shown is the Person table.
+
+The driver will first compile and run your piece of code and then show the Person table.
+The final order of the Person table does not matter.
 
 The result format is in the following example.
 
@@ -45,3 +48,10 @@ Output:
 Explanation: john@example.com is repeated two times. We keep the row with the smallest Id = 1.
 
 */
+
+/* Write your T-SQL query statement below */
+DELETE p
+WHERE p.id > q.id
+AND p.email = q.email
+
+-- Runtime: 971ms, Beats 54.30%of users with MS SQL Server
