@@ -84,6 +84,14 @@ GROUP BY product_id) AS c
 JOIN Sales AS s
 ON c.product_id = s.product_id
 AND c.first_year = s.year
-
 -- Runtime: Tried both versions, all test cases passed but don't know why lc is showing tle
+-- ======================================================================
+-- FROM LC SOLUTIONS
+-- ======================================================================
+SELECT s.product_id, s.year as first_year, s.quantity, s.price 
+FROM Sales AS s
+WHERE s.year IN (SELECT min(year) FROM Sales AS s1 WHERE s.product_id = s1.product_id);
+
+
+-- Runtime: Even an accepted LC solution is saying tle. !!! 
 
