@@ -47,18 +47,28 @@ Only the player with id 1 logged back in after the first day he had logged in so
 */
 
 -- Code:
-
 WITH CTE AS (
-SELECT  *
-FROM Activity 
-WHERE DATEADD(DAY, 1, event_date) IN (
-  SELECT event_date FROM Activity
-))
+SELECT player_id, min(event_date) as min_date
+FROM Activity
+GROUP BY player_id
+)
 
 SELECT 
-ROUND(CAST(COUNT(c.player_id) AS DECIMAL)/COUNT(DISTINCT a.player_id), 2) AS fraction
-FROM Activity a 
-LEFT JOIN CTE as c
-ON a.player_id = c.player_id
-AND a.event_date = c.event_date
---Runtime:
+ROUND(CAST(
+  SUM(
+  CASE 
+    WHEN DATEADD(DAY,1,c.min_date) = a.event_date
+    THEN 1 
+    ELSE 0 
+  END)
+AS DECIMAL)
+/
+CAST(
+  COUNT(DISTINCT c.player_id)
+AS DECIMAL),2) AS fraction
+FROM CTE AS c
+JOIN Activity AS a
+ON c.player_id = a.player_id
+
+--Runtime: 2330ms, Beats 98.09% of users with MS SQL Server
+-- This was a good problem
