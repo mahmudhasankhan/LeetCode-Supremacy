@@ -51,11 +51,13 @@ Output:
 +---------------------+
 */
 
--- Solution:
+/* Write your T-SQL query statement below */
 
-select salary as "SecondHighestSalary"
-from (
+SELECT MAX(r.salary) AS SecondHighestSalary
+FROM (SELECT salary,
+DENSE_RANK() OVER(ORDER BY salary DESC) AS Row#
+FROM Employee) AS r
+WHERE r.Row# = 2 
 
-) 
-
-
+-- An aggregation query with no group by or having always returns one row.
+-- If there are no rows then the value is (generally) NULL for aggregation functions (the exception is COUNT()).
