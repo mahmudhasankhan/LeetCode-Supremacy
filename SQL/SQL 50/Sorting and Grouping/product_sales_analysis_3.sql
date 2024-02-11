@@ -94,4 +94,5 @@ WHERE s.year IN (SELECT min(year) FROM Sales AS s1 WHERE s.product_id = s1.produ
 
 
 -- Runtime: Even an accepted LC solution is saying tle. !!! 
+-- Update: After running several times, it got accepted
 
