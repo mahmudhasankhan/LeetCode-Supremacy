@@ -93,3 +93,14 @@ FROM (SELECT visited_on,
 	GROUP BY visited_on) r
 WHERE rank >= 7
 ORDER BY rank
+
+
+-------------------------------------------- My version ------------------------------------------------
+
+SELECT r.visited_on, r.amount, ROUND((CAST(r.amount AS DECIMAL) / 7), 2)AS average_amount
+FROM (SELECT visited_on, 
+			SUM(SUM(amount)) OVER(ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS amount,
+			DENSE_RANK() OVER(ORDER BY visited_on) AS rank
+	FROM Customer
+	GROUP BY visited_on) r
+WHERE r.rank >= 7
