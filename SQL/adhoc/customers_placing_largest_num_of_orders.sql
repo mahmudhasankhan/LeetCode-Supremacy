@@ -57,3 +57,32 @@ GROUP BY customer_number) r ) l
 WHERE l.rnk = 1
 
 -- I feel like i thought too critical during solving this problem, my solution is by no means simple to the avg joe
+
+These are more simpler solutions than mine
+-----------------------
+select top 1 customer_number
+from (
+    select customer_number,
+    rank() over (partition by customer_number order by order_number) as rank
+    from orders
+)o
+order by rank desc
+
+-----------------------
+
+-----------------------
+select distinct customer_number
+from orders
+where customer_number in
+(select top(1) customer_number
+from orders
+group by customer_number
+order by count(order_number) desc)
+
+-------------------- My revised solution after seeing the above solution ----------------------
+select top (1) customer_number
+from orders
+group by customer_number
+order by count(order_number) desc
+
+-- Remarks: I think this one is much more simpler to read and understand
