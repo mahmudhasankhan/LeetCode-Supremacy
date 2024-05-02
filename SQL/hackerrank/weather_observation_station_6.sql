@@ -7,3 +7,8 @@ or city like 'o%'
 or city like 'u%'
 
 -- dumb problem
+
+-- More elegant way to solve this is: 
+SELECT CITY
+FROM STATION
+WHERE CITY Like '[AEIOU]%';
