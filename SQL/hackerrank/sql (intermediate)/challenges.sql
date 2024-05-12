@@ -3,21 +3,6 @@ Enter your query here.
 Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
 */
 
-DECLARE @max_val INT
-
-SET @max_val = (
-SELECT
-TOP 1 count(c.challenge_id) 
-FROM
-    Hackers h
-JOIN 
-    Challenges c
-ON 
-    h.hacker_id = c.hacker_id
-GROUP BY h.hacker_id, h.name
-ORDER BY count(c.challenge_id ) desc
-);
-
 WITH num_challenges as (
 SELECT
 h.hacker_id, h.name, count(c.challenge_id) as challenges_created
@@ -47,7 +32,7 @@ FROM
 JOIN 
     count_challenges cc
 ON nc.challenges_created = cc.challenges_created
-WHERE cc.count_cc = 1 OR nc.challenges_created = @max_val
+WHERE cc.count_cc = 1 OR nc.challenges_created = (SELECT MAX(challenges_created) FROM num_challenges)
 ORDER BY nc.challenges_created DESC, nc.hacker_id
 
     
