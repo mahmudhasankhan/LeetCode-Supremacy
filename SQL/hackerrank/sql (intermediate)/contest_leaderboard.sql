@@ -1,11 +1,4 @@
 
--- part 1
--- total score is the sum of their maximum scores for all of the challenges
--- hacker_ id
--- name
--- total score of the hackers 
-
--- order by desc scores
 
 
 -------------------------- Solution I got from youtube ---------------------------------------
