@@ -24,3 +24,15 @@ Table: orders
 | product_id  | int       |
 +-------------+-----------+
 */
+
+-- Solution:
+with cte as (select p.product_id, o.order_date, max(p.price) as price 
+from products p
+join orders o
+on p.product_id = o.product_id
+where p.price_date <= o.order_date 
+group by p.product_id, o.order_date)
+
+Select product_id, sum(price) as total_sales
+from cte
+group by product_id
