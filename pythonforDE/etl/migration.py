@@ -5,6 +5,7 @@ import logging
 import os
 import time
 
+from dotenv import load_dotenv, find_dotenv
 from tqdm import tqdm
 
 
@@ -13,11 +14,11 @@ my_path = "./files/"
 
 # conn params
 db_credentials = {
-    'user': 'bits',
-    'password': 'biTS@#123',
-    'host': '35.194.148.245',
-    'port': '4550',
-    'database': 'sbicloud_bd'
+    'user': os.environ['USER'],
+    'password': os.environ['PASSWORD'],
+    'host': os.environ['HOST'],
+    'port': os.environ['PORT'],
+    'database': os.environ['DATABASE'] 
 }
 
 
@@ -131,6 +132,7 @@ def process_multiple_excels(filenames: str, conn_params):
         insert_into_postgresql(df, conn_params)
 
 def main():
+    _ = load_dotenv(find_dotenv())
     logging.basicConfig(level=logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s",
                         datefmt="%Y-%m-%d %H:%M:%S",
@@ -146,3 +148,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
