@@ -32,4 +32,20 @@ select
 from avg_sal_per_dept
 cross join avg_sal;
 
+----------------------------------------
 
+-- solution taken from datalemur:
+
+SELECT DISTINCT department_id,
+       TO_CHAR(payment_date,'MM-YYYY'),
+       CASE WHEN AVG(amount) OVER (PARTITION BY department_id) < AVG(amount) OVER ()
+            THEN 'lower'
+            WHEN AVG(amount) OVER (PARTITION BY department_id) = AVG(amount) OVER ()
+            THEN 'same'
+            WHEN AVG(amount) OVER (PARTITION BY department_id) > AVG(amount) OVER ()
+            THEN 'higher' END
+FROM employee AS emp
+INNER JOIN salary AS s
+ON emp.employee_id = s.employee_id
+WHERE EXTRACT(MONTH FROM payment_date) = 3
+      AND EXTRACT(YEAR FROM payment_date) = 2024;
